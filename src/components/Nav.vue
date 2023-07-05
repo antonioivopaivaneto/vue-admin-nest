@@ -120,14 +120,44 @@
   <div id="navbarSearch" class="navbar-search w-100 collapse">
     <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   </div>
+
+  <router-link to="/profile" class="navbar-text mx-4">
+      {{ name }}
+    </router-link>
 </header>
 </template>
 
 <script>
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 export default{
 
     // eslint-disable-next-line vue/multi-word-component-names
     name:"Nav",
+    
+    setup(){
+      const name = ref('');
+      const router = useRouter();
+
+
+      onMounted(async () =>{
+        try{
+          const  {data} = await axios.get('user')
+          name.value = data.first_name + ' ' + data.last_name;
+
+        }catch (e){
+          await router.push('/login');
+
+        }
+      
+
+      });
+
+      return{
+        name
+      }
+    }
 }
 
 </script>

@@ -103,11 +103,12 @@
 import {ref} from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import router from '@/router';
 
 export default {
     name:"RegisterPage",
     setup(){
+        const router = useRouter();
+
         const firstName = ref('');
         const lastName = ref('');
         const email = ref('');
@@ -115,7 +116,7 @@ export default {
         const confirmPassword = ref('');
 
         const  submit = async () => {
-            await axios.post('http://localhost:3002/api/register',{
+            await axios.post('register',{
                 first_name : firstName.value,
                 last_name : lastName.value,
                 email : email.value,
@@ -123,7 +124,7 @@ export default {
                 password_confirm : confirmPassword.value,
             });
 
-           await router.push('/login');
+           await router.push('login');
         }
 
 

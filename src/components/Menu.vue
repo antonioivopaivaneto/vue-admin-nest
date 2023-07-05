@@ -23,6 +23,12 @@
               </router-link>
             </li>
             <li class="nav-item">
+              <router-link to="/roles" active-class="active" class="nav-link d-flex align-items-center gap-2" >
+                <svg class="bi"><use xlink:href="#people"/></svg>
+                Roles
+              </router-link>
+            </li>
+            <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
                 Products
@@ -38,10 +44,10 @@
           <ul class="nav flex-column mb-auto">
             
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <router-link to="/login" @click="logout" class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
                 Sign out
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -51,9 +57,19 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name:"Menu",
+    setup(){
+      const logout = async () => {
+        await axios.post('logout');
+      }
+
+      return{
+        logout
+      }
+    }
 }
 </script>
 
