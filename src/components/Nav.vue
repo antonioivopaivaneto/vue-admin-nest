@@ -128,9 +128,8 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
-import axios from 'axios';
-import { useRouter } from 'vue-router';
+import { computed, ref, watch } from 'vue';
+import { useStore } from 'vuex';
 export default{
 
     // eslint-disable-next-line vue/multi-word-component-names
@@ -138,21 +137,15 @@ export default{
     
     setup(){
       const name = ref('');
-      const router = useRouter();
+      const store = useStore();
 
+      const user = computed(() => store.state.User.user)
 
-      onMounted(async () =>{
-        try{
-          const  {data} = await axios.get('user')
-          name.value = data.first_name + ' ' + data.last_name;
-
-        }catch (e){
-          await router.push('/login');
-
-        }
+      watch(user,()=>{
+        name.value = user.value.first_name + ' ' + user.value.last_name
+      })
       
 
-      });
 
       return{
         name

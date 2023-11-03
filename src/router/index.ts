@@ -9,12 +9,18 @@ import UserEdit from '@/pages/users/userEdit.vue'
 import Register from '@/pages/Register.vue'
 import Wrapper from '@/pages/Wrapper.vue'
 import Login from '@/pages/Login.vue'
+import Products from '@/pages/products/products.vue'
+import ProductsCreate from '@/pages/products/ProductCreate.vue'
+import ProductsEdit from '@/pages/products/ProductEdit.vue';
+import Orders from '@/pages/orders/Orders.vue';
+import Profile from '@/pages/Profile.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path:'',
     component:Wrapper,
     children:[
+      {path:'/profile',component:Profile},
       {path:'',component:Dashboard},
       {path:'/users',component:Users},
       {path:'/users/Create',component:UserCreate},
@@ -22,10 +28,14 @@ const routes: Array<RouteRecordRaw> = [
       {path:'/roles',component:rolesPage},
       {path:'/roles/create',component:rolesCreate},
       {path:'/roles/:id/edit',component:RoleEdit},
+      {path:'/products',component:Products},
+      {path:'/products/create',component:ProductsCreate},
+      {path: '/products/:id/edit', component: ProductsEdit},
+      {path: '/orders', component: Orders},
     ]
   },
+
   
-  {path:'/profile',component:Login},
   {path:'/login',component:Login},
   {path:'/register',component:Register},
 ]

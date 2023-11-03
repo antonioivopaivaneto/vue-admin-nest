@@ -1,13 +1,13 @@
 <template>
-  <main class="form-signin w-25 m-auto">
+  <main class="form-signin w-25 m-auto mt-5">
                     <form @submit.prevent="submit">
                         <h1 class="h3 mb-3 fw-normal">Sign In</h1>
 
                         
 
                         <div class="form-floating mt-2">
-                            <input v-model="form.email" required  type="mail" class="form-control" id="floatingPassword" >
-                            <label for="floatingPassword">Email</label>
+                            <input v-model="form.email" required  type="mail" class="form-control" id="floatingEmail" >
+                            <label for="floatingEmail">Email</label>
                         </div>
 
                         <div class="form-floating mt-2">
